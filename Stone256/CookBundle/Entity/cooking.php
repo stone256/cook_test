@@ -53,6 +53,12 @@ class cooking
     private $food;
 
 
+    public function whatToCook($recipes, $fridge){
+  
+	 return  $cook_recipe =  $recipes->match($fridge);
+    }
+    
+    
     /**
      * Get id
      *
@@ -267,6 +273,9 @@ class cooking
         // Cleanup.
         $this->setFile();
     }
+    
+    
+    
     
     
 }

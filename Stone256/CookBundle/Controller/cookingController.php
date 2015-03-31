@@ -53,16 +53,8 @@ class cookingController extends Controller
         if ($form->isValid()) {
 	    $entity->upload();
 	    $entity->updatedTimestamps();
-	    
-	    $fridge = new fridge($entity->getFridgeAbsolute());
-	    $msg = $fridge->isError();
-	    if(!$msg){
-		$recipes = new recipes($entity->getRecipes());
-		$msg = $recipes->isError();
-	    }
-	    
-	    if(!$msg){
-	    
+
+	      $entity->setFood($entity->whatToCook($recipes,$fridge));
 	      $em = $this->getDoctrine()->getManager();
 	      $em->persist($entity);
 	      $em->flush();
