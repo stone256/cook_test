@@ -8,10 +8,12 @@
             <tr>
                 <th>Id</th>
                 <th>Date</th>
+		<!--
                 <th>Fridge</th>
                 <th>Recipes</th>
+                -->
                 <th>Food</th>
-                <th>Actions</th>
+                <!--<th>Actions</th>-->
             </tr>
         </thead>
         <tbody>
@@ -19,17 +21,14 @@
             <tr>
                 <td><a href="{{ path('cooking_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.fridge }}</td>
+<!--                
+		<td>{{ entity.fridge }}</td>
                 <td>{{ entity.recipes }}</td>
+-->
                 <td>{{ entity.food }}</td>
                 <td>
                 <ul>
-                    <li>
-                        <a href="{{ path('cooking_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('cooking_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
+                    
                 </ul>
                 </td>
             </tr>

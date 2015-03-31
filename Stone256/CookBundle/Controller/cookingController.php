@@ -53,7 +53,15 @@ class cookingController extends Controller
         if ($form->isValid()) {
 	    $entity->upload();
 	    $entity->updatedTimestamps();
-
+	    
+	    $fridge = new fridge($entity->getFridgeAbsolute());
+	    $msg = $fridge->isError();
+	    if(!$msg){
+		$recipes = new recipes($entity->getRecipes());
+		$msg = $recipes->isError();
+	    }
+	    
+	    if(!$msg){
 	      $entity->setFood($entity->whatToCook($recipes,$fridge));
 	      $em = $this->getDoctrine()->getManager();
 	      $em->persist($entity);
@@ -140,7 +148,7 @@ class cookingController extends Controller
      * @Route("/{id}/edit", name="cooking_edit")getfrigdeAbsolute
      * @Method("GET")
      * @Template()
-     */
+     
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -160,7 +168,9 @@ class cookingController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
-
+  */
+  
+  
     /**
     * Creates a form to edit a cooking entity.
     *

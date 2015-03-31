@@ -16,8 +16,8 @@ class cookingType extends AbstractType
     {
         $builder
            // ->add('date')
-            ->add('file')
-            ->add('recipes')
+            ->add('file', 'file', array('label' => 'select a CSV file'))
+            ->add('recipes', 'textarea' , array('label' => 'Paste Recipes as Json string here'))
            // ->add('food')
         ;
     }

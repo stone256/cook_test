@@ -13,7 +13,7 @@
                 <th>Date</th>
                 <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
             </tr>
-            <tr>
+ <!--           <tr>
                 <th>Fridge</th>
                 <td>{{ entity.fridge }}</td>
             </tr>
@@ -21,6 +21,7 @@
                 <th>Recipes</th>
                 <td>{{ entity.recipes }}</td>
             </tr>
+            -->
             <tr>
                 <th>Food</th>
                 <td>{{ entity.food }}</td>
@@ -34,11 +35,6 @@
             Back to the list
         </a>
     </li>
-    <li>
-        <a href="{{ path('cooking_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
+
 </ul>
 {% endblock %}

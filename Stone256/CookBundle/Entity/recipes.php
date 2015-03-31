@@ -77,6 +77,42 @@ class recipes
    public function getData(){
 	return $this->data;
     }
+    
+    /**
+     * check fridge with recipe
+     *
+     */
+    public function match($fridge){
+	$material = $fridge->getData();
 
+	$today = Date('Y-m-d');
+
+	$matched = array();
+	foreach($this->data as $kr=>$vr){
+	      //match ingredients
+	      $match = true;
+	      foreach($vr['ingredients'] as $ki=>$vi){
+   
+		var_export($vi);
+		  if(!$material[$vi['item']]){
+		  
+		    $match = false;	//no ingredints
+		  }
+		  if($material[$vi['item']]['Use-By'] < $today){
+		    $match = false;	//expired
+		  }
+		  if($material[$vi['item']]['Amount'] < $vi['amount'] ){
+		    $match = false; 	//not enought
+		  }
+		  if($material[$vi['item']]['Unit'] < $vi['unit'] ){
+		    $match = false; 	//wrong units
+		  }
+	      }
+	      if($match) $matched[] = $vr['name'];
+	}
+ 
+	return count($matched) ? implode(',', $matched) : 'Order Takeout'; 
+     
+    }
     
 }
