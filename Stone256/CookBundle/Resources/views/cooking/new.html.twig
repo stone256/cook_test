@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>cooking creation</h1>
+
+<div>{{msg[0]}}<div>
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('cooking') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}
