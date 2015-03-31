@@ -45,7 +45,7 @@ class fridge
    }
    
    /**
-    * parse CSV to php array
+    * parse CSV to php array: validation
     */
    public function parse(){
    

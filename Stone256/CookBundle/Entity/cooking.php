@@ -52,9 +52,12 @@ class cooking
      */
     private $food;
 
-
+    
+    /**
+     *	check what you can cook
+     */
     public function whatToCook($recipes, $fridge){
-  
+	  //check any macthed recipe with food you have
 	 return  $cook_recipe =  $recipes->match($fridge);
     }
     

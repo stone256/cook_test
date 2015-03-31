@@ -54,14 +54,20 @@ class cookingController extends Controller
 	    $entity->upload();
 	    $entity->updatedTimestamps();
 	    
+	    //validate csv input
 	    $fridge = new fridge($entity->getFridgeAbsolute());
 	    $msg = $fridge->isError();
 	    if(!$msg){
+		//validate json input
 		$recipes = new recipes($entity->getRecipes());
 		$msg = $recipes->isError();
 	    }
 	    
 	    if(!$msg){
+	    /**
+	      * check what you can Cook
+	      * save result to a db field("food");
+	      */
 	      $entity->setFood($entity->whatToCook($recipes,$fridge));
 	      $em = $this->getDoctrine()->getManager();
 	      $em->persist($entity);

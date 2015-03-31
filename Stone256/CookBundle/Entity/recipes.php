@@ -23,9 +23,13 @@ class recipes
 	$this->string = (string)$input_string;
 	$this->parse();
     }
-    
+    /**
+     * parse data and validate
+     */
     public function parse(){
+    
       $data = json_decode($this->string,true);
+      //no data or not json
       if(!$data || !is_array($data) || count($data)<1 ){
 	  $this->error[] = "Incorrect recipes input";
 	  return;
@@ -79,7 +83,7 @@ class recipes
     }
     
     /**
-     * check fridge with recipe
+     * check food you have to match recipes
      *
      */
     public function match($fridge){
@@ -92,10 +96,7 @@ class recipes
 	      //match ingredients
 	      $match = true;
 	      foreach($vr['ingredients'] as $ki=>$vi){
-   
-		var_export($vi);
 		  if(!$material[$vi['item']]){
-		  
 		    $match = false;	//no ingredints
 		  }
 		  if($material[$vi['item']]['Use-By'] < $today){

@@ -15,10 +15,10 @@ class cookingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-           // ->add('date')
+           // ->add('date') //not an input field
             ->add('file', 'file', array('label' => 'Select a "Fridge" CSV file to upload'))
             ->add('recipes', 'textarea' , array('label' => 'Paste "Recipes" as Json string here'))
-           // ->add('food')
+           // ->add('food') //not an input field
         ;
     }
     
