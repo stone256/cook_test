@@ -3,53 +3,44 @@
 namespace Stone256\CookBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Stone256\CookBundle\Entity\cooking;
+use Stone256\CookBundle\Entity\fridge;
+use Stone256\CookBundle\Entity\recipes;
 
 class cookingControllerTest extends WebTestCase
 {
-    /*
+    
     public function testCompleteScenario()
     {
-        // Create a new client to browse the application
-        $client = static::createClient();
+    
+	//test recipe data receiver
+	$json = '[{"name": "grilled cheese on toast","ingredients": [{ "item":"bread", "amount":"2", "unit":"slices"},{ "item":"cheese", "amount":"2", "unit":"slices"}]},{"name": "salad sandwich","ingredients": [{ "item":"bread", "amount":"2", "unit":"slices"},{ "item":"mixed salad", "amount":"200", "unit":"grams"}]}]';
+	$recipes = new recipes($json);
+	$this->assertTrue($recipes->isError() === false);
+    
+	$json = '[{"name": "","ingredients": [{ "item":"bread", "amount":"2", "unit":"slices"},{ "item":"cheese", "amount":"2", "unit":"slices"}]},{"name": "salad sandwich","ingredients": [{ "item":"bread", "amount":"2", "unit":"slices"},{ "item":"mixed salad", "amount":"200", "unit":"grams"}]}]';
+	$recipes = new recipes($json);
+	$this->assertTrue($recipes->isError() !== false);
+   
+	$json = '[{"name": "abc","ingredients": [{ "item":"bread", "amount":"0", "unit":"slices"},{ "item":"cheese", "amount":"2", "unit":"slices"}]},{"name": "salad sandwich","ingredients": [{ "item":"bread", "amount":"2", "unit":"slices"},{ "item":"mixed salad", "amount":"200", "unit":"grams"}]}]';
+	$recipes = new recipes($json);
+	$this->assertTrue($recipes->isError() !== false);
+   
+	$json = '[{"name": "abc","ingredients": [{ "item":"bread", "amount":"1", "unit":"ss-slices"},{ "item":"cheese", "amount":"2", "unit":"slices"}]},{"name": "salad sandwich","ingredients": [{ "item":"bread", "amount":"2", "unit":"slices"},{ "item":"mixed salad", "amount":"200", "unit":"grams"}]}]';
+	$recipes = new recipes($json);
+	$this->assertTrue($recipes->isError() !== false);
+      
+	$json = '"name": "abc","ingredients": [{ "item"  dasdasdad ';
+	$recipes = new recipes($json);
+	$this->assertTrue($recipes->isError() !== false);
 
-        // Create a new entry in the database
-        $crawler = $client->request('GET', '/cooking/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /cooking/");
-        $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
+	//..
+	//..
+	//test 135 ..
 
-        // Fill in the form and submit it
-        $form = $crawler->selectButton('Create')->form(array(
-            'stone256_cookbundle_cooking[field_name]'  => 'Test',
-            // ... other fields to fill
-        ));
+	
+	  return;
+      }
 
-        $client->submit($form);
-        $crawler = $client->followRedirect();
-
-        // Check data in the show view
-        $this->assertGreaterThan(0, $crawler->filter('td:contains("Test")')->count(), 'Missing element td:contains("Test")');
-
-        // Edit the entity
-        $crawler = $client->click($crawler->selectLink('Edit')->link());
-
-        $form = $crawler->selectButton('Update')->form(array(
-            'stone256_cookbundle_cooking[field_name]'  => 'Foo',
-            // ... other fields to fill
-        ));
-
-        $client->submit($form);
-        $crawler = $client->followRedirect();
-
-        // Check the element contains an attribute with value equals "Foo"
-        $this->assertGreaterThan(0, $crawler->filter('[value="Foo"]')->count(), 'Missing element [value="Foo"]');
-
-        // Delete the entity
-        $client->submit($crawler->selectButton('Delete')->form());
-        $crawler = $client->followRedirect();
-
-        // Check the entity has been delete on the list
-        $this->assertNotRegExp('/Foo/', $client->getResponse()->getContent());
-    }
-
-    */
+    
 }

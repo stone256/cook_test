@@ -1,0 +1,9 @@
+body { padding:30px 53px; }
+
+textarea{display:block;}
+label {margin-top:20px;}
+button{margin-top:20px;}
+textarea{width:400px; height:250px;}
+th{padding:10px;}
+td{padding:10px;}
+.record_actions{margin-top:20px;}
